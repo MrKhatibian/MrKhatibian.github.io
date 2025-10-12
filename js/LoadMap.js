@@ -1,38 +1,38 @@
 ﻿//#region Import---------------------------------------------------------------------------------------------
 
 //-------Import Modules--------\\
-import Map from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/Map.js";
-import MapView from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/views/MapView.js";
-import GroupLayer from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/layers/GroupLayer.js";
-import MapImageLayer from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/layers/MapImageLayer.js";
-import FeatureLayer from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/layers/FeatureLayer.js";
-import WFSLayer from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/layers/WFSLayer.js";
-import Home from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/Home.js";
-import Fullscreen from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/Fullscreen.js";
-import CoordinateConversion from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/CoordinateConversion.js";
-import BasemapGallery from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/BasemapGallery.js";
-import Bookmarks from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/Bookmarks.js";
-import LayerList from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/LayerList.js";
-import Legend from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/Legend.js";
-import Print from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/Print.js";
-import Measurement from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/Measurement.js";
-import Graphic from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/Graphic.js";
-import GraphicsLayer from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/layers/GraphicsLayer.js";
-import * as geometryEngine from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/geometry/geometryEngine.js";
-import Sketch from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/Sketch.js";
-import ScaleBar from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/ScaleBar.js";
-import FeatureTable from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/FeatureTable.js";
-import ImageryTileLayer from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/layers/ImageryTileLayer.js";
-import TileLayer from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/layers/TileLayer.js";
-import { Polygon } from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/geometry.js";
-import Editor from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/Editor.js";
-import * as identify from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/rest/identify.js";
-import IdentifyParameters from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/rest/support/IdentifyParameters.js";
-import Query from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/rest/support/Query.js";
-import WebTileLayer from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/layers/WebTileLayer.js";
-import Fe from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/widgets/Editor.js";
-import esriConfig from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/config.js";
-import { extend } from "./arcgis_js_v430_api/arcgis_js_api/javascript/4.30/@arcgis/core/chunks/arcadeAsyncRuntime.js";
+// ArcGIS JS SDK CDN imports
+import Map from "https://js.arcgis.com/4.30/esri/Map.js";
+import MapView from "https://js.arcgis.com/4.30/esri/views/MapView.js";
+import GroupLayer from "https://js.arcgis.com/4.30/esri/layers/GroupLayer.js";
+import MapImageLayer from "https://js.arcgis.com/4.30/esri/layers/MapImageLayer.js";
+import FeatureLayer from "https://js.arcgis.com/4.30/esri/layers/FeatureLayer.js";
+import WFSLayer from "https://js.arcgis.com/4.30/esri/layers/WFSLayer.js";
+import Home from "https://js.arcgis.com/4.30/esri/widgets/Home.js";
+import Fullscreen from "https://js.arcgis.com/4.30/esri/widgets/Fullscreen.js";
+import CoordinateConversion from "https://js.arcgis.com/4.30/esri/widgets/CoordinateConversion.js";
+import BasemapGallery from "https://js.arcgis.com/4.30/esri/widgets/BasemapGallery.js";
+import Bookmarks from "https://js.arcgis.com/4.30/esri/widgets/Bookmarks.js";
+import LayerList from "https://js.arcgis.com/4.30/esri/widgets/LayerList.js";
+import Legend from "https://js.arcgis.com/4.30/esri/widgets/Legend.js";
+import Print from "https://js.arcgis.com/4.30/esri/widgets/Print.js";
+import Measurement from "https://js.arcgis.com/4.30/esri/widgets/Measurement.js";
+import Graphic from "https://js.arcgis.com/4.30/esri/Graphic.js";
+import GraphicsLayer from "https://js.arcgis.com/4.30/esri/layers/GraphicsLayer.js";
+import * as geometryEngine from "https://js.arcgis.com/4.30/esri/geometry/geometryEngine.js";
+import Sketch from "https://js.arcgis.com/4.30/esri/widgets/Sketch.js";
+import ScaleBar from "https://js.arcgis.com/4.30/esri/widgets/ScaleBar.js";
+import FeatureTable from "https://js.arcgis.com/4.30/esri/widgets/FeatureTable.js";
+import ImageryTileLayer from "https://js.arcgis.com/4.30/esri/layers/ImageryTileLayer.js";
+import TileLayer from "https://js.arcgis.com/4.30/esri/layers/TileLayer.js";
+import { Polygon } from "https://js.arcgis.com/4.30/esri/geometry.js";
+import Editor from "https://js.arcgis.com/4.30/esri/widgets/Editor.js";
+import * as identify from "https://js.arcgis.com/4.30/esri/rest/identify.js";
+import IdentifyParameters from "https://js.arcgis.com/4.30/esri/rest/support/IdentifyParameters.js";
+import Query from "https://js.arcgis.com/4.30/esri/rest/support/Query.js";
+import WebTileLayer from "https://js.arcgis.com/4.30/esri/layers/WebTileLayer.js";
+import esriConfig from "https://js.arcgis.com/4.30/esri/config.js";
+
 //#endregion Import------------------------------------------------------------------------------------------
 
 // #region Main Values---------------------------------------------------------------------------------------
