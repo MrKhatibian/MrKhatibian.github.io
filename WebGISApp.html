@@ -22,26 +22,31 @@
 <body>
     <div id="viewDiv"></div>
     <script type="module">
-        const [Map, MapView, Home, ScaleBar, Compass] = await $arcgis.import([
+        const [Map, MapView,
+            Home, ScaleBar, Compass, BasemapGallery, Expand]
+            = await $arcgis.import([
             "@arcgis/core/Map.js",
             "@arcgis/core/views/MapView.js",
 
             "@arcgis/core/widgets/Home.js",
             "@arcgis/core/widgets/ScaleBar.js",
             "@arcgis/core/widgets/Compass.js",
+            "@arcgis/core/widgets/BasemapGallery.js",
+            "@arcgis/core/widgets/Expand.js",
+
         ]);
 
         const map = new Map({
-            basemap: "streets",
+            basemap: "topo",
         });
 
         const view = new MapView({
             container: "viewDiv",
             map: map,
-            zoom: 4,
-            center: [15, 65], // longitude, latitude
+            zoom: 6,
+            center: [5, 50], // longitude, latitude
         });
-        
+        await view.when();
 
         const home = new Home({ view });
         view.ui.add(home, "top-left");
@@ -51,6 +56,17 @@
 
         const compass = new Compass({ view });
         view.ui.add(compass, "top-right");
+
+        const basemapgallery = new BasemapGallery({ view });
+
+        const basemapExpand = new Expand({
+            view,
+            content: basemapgallery,
+            expandIcon: "basemap",
+            expandTooltip: "Change basemap",
+            group: "top-right",
+        });
+        view.ui.add(basemapExpand, "bottom-left");
     </script>
 </body>
 </html>
