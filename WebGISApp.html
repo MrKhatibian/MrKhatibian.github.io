@@ -16,29 +16,41 @@
     </style>
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.33/esri/themes/light/main.css" />
-    <script src="https://js.arcgis.com/4.33/"></script>
-
-    <script type="module">
-      const [Map, MapView] = await $arcgis.import([
-        "@arcgis/core/Map.js",
-        "@arcgis/core/views/MapView.js",
-      ]);
-
-      const map = new Map({
-        basemap: "osm",
-      });
-
-      const view = new MapView({
-        container: "viewDiv",
-        map: map,
-        zoom: 4,
-        center: [15, 65], // longitude, latitude
-      });
-      view.ui.remove("attribution");
-    </script>
+    <script src="https://js.arcgis.com/4.33/"></script>    
 </head>
 
 <body>
     <div id="viewDiv"></div>
+    <script type="module">
+        const [Map, MapView, Home, ScaleBar, Compass] = await $arcgis.import([
+            "@arcgis/core/Map.js",
+            "@arcgis/core/views/MapView.js",
+
+            "@arcgis/core/widgets/Home.js",
+            "@arcgis/core/widgets/ScaleBar.js",
+            "@arcgis/core/widgets/Compass.js",
+        ]);
+
+        const map = new Map({
+            basemap: "streets",
+        });
+
+        const view = new MapView({
+            container: "viewDiv",
+            map: map,
+            zoom: 4,
+            center: [15, 65], // longitude, latitude
+        });
+        
+
+        const home = new Home({ view });
+        view.ui.add(home, "top-left");
+
+        const scalebar = new ScaleBar({ view });
+        view.ui.add(scalebar, "bottom-right");   
+
+        const compass = new Compass({ view });
+        view.ui.add(compass, "top-right");
+    </script>
 </body>
 </html>
