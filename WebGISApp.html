@@ -22,31 +22,73 @@
 <body>
     <div id="viewDiv"></div>
     <script type="module">
-        const [Map, MapView,
+        const [Map, MapView, WMSLayer, LayerList,
             Home, ScaleBar, Compass, BasemapGallery, Expand]
             = await $arcgis.import([
-            "@arcgis/core/Map.js",
-            "@arcgis/core/views/MapView.js",
+                "@arcgis/core/Map.js",
+                "@arcgis/core/views/MapView.js",
+                "@arcgis/core/layers/WMSLayer.js",
+                "@arcgis/core/widgets/LayerList.js",
 
-            "@arcgis/core/widgets/Home.js",
-            "@arcgis/core/widgets/ScaleBar.js",
-            "@arcgis/core/widgets/Compass.js",
-            "@arcgis/core/widgets/BasemapGallery.js",
-            "@arcgis/core/widgets/Expand.js",
-
-        ]);
+                "@arcgis/core/widgets/Home.js",
+                "@arcgis/core/widgets/ScaleBar.js",
+                "@arcgis/core/widgets/Compass.js",
+                "@arcgis/core/widgets/BasemapGallery.js",
+                "@arcgis/core/widgets/Expand.js",                
+            ]);
 
         const map = new Map({
-            basemap: "topo",
+            basemap: "streets",
         });
 
         const view = new MapView({
             container: "viewDiv",
             map: map,
             zoom: 6,
-            center: [5, 50], // longitude, latitude
+            center: [7, 51], // longitude, latitude
         });
         await view.when();
+
+        // Düsseldorf traffic WMS
+        const trafficWMS = new WMSLayer({
+            url: "https://maps.duesseldorf.de/services/verkehr/wms"
+        });
+
+        map.add(trafficWMS);
+
+        try {
+            await trafficWMS.load();
+
+            console.log("WMS loaded:", trafficWMS);
+            console.log(
+                "Available WMS layers:",
+                trafficWMS.sublayers.toArray().map(layer => ({
+                    name: layer.name,
+                    title: layer.title
+                }))
+            );
+        } catch (error) {
+            console.error("Failed to load Düsseldorf WMS:", error);
+        }
+
+        // Wait until the WMS service is loaded
+        await trafficWMS.load();
+
+        // Create LayerList
+        const layerList = new LayerList({
+            view: view
+        });
+
+        // Put LayerList inside a toggle
+        const layerListExpand = new Expand({
+            view: view,
+            content: layerList,
+            expandIcon: "layers",
+            expandTooltip: "Layer List",
+            group: "top-right"
+        });
+
+        view.ui.add(layerListExpand, "top-right");
 
         const home = new Home({ view });
         view.ui.add(home, "top-left");
